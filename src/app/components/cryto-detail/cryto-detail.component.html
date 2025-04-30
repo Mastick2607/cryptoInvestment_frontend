@@ -1,1 +1,115 @@
-<p>cryto-detail works!</p>
+<div class="crypto-detail-container" *ngIf="cripto.length">
+  <div class="crypto-header">
+    <div class="crypto-title">
+      <div class="crypto-icon-name">
+        <img class="crypto-icon" src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{cripto[0].id}}.png" 
+             alt="{{cripto[0].name}} logo" 
+             onerror="this.src='assets/images/default-crypto.png'">
+        <h1>{{cripto[0].name}} <span class="crypto-symbol">{{cripto[0].symbol}}</span></h1>
+        <span class="rank-badge">#{{cripto[0].cmc_rank}}</span>
+      </div>
+      <div class="action-buttons">
+        <button class="follow-btn">Seguir</button>
+        <button class="buy-btn">Comprar {{cripto[0].symbol}}</button>
+      </div>
+    </div>
+
+    <div class="price-section">
+      <div class="current-price">
+        <h2>{{cripto[0].quote.USD.price | number:'1.2-2'}} US$</h2>
+        <span class="price-change" [ngClass]="{'positive': cripto[0].quote.USD.percent_change_24h > 0, 'negative': cripto[0].quote.USD.percent_change_24h < 0}">
+          <i class="arrow" [ngClass]="{'up': cripto[0].quote.USD.percent_change_24h > 0, 'down': cripto[0].quote.USD.percent_change_24h < 0}"></i>
+          {{cripto[0].quote.USD.percent_change_24h | number:'1.2-2'}}% (1D)
+        </span>
+      </div>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active">Gráfico</button>
+        <button class="tab-btn">Mercados</button>
+        <button class="tab-btn">Noticias</button>
+        <button class="tab-btn">Rendimientos</button>
+        <button class="tab-btn">Analíticas</button>
+        <button class="tab-btn">Acerca de</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="chart-container">
+      <div class="chart-header">
+        <div class="chart-tabs">
+          <button class="chart-tab-btn active">Historial de Precios</button>
+          <button class="chart-tab-btn">Market cap</button>
+        </div>
+        <div class="chart-timeframes">
+          <button class="timeframe-btn">1D</button>
+          <button class="timeframe-btn active">7D</button>
+          <button class="timeframe-btn">1M</button>
+          <button class="timeframe-btn">1Y</button>
+          <button class="timeframe-btn">Todo</button>
+        </div>
+      </div>
+      
+      <div class="chart-area" *ngIf="isBrowser">
+        <canvas baseChart
+          [type]="'line'"
+          [data]="lineChartData"
+          [options]="lineChartOptions">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Capitalización de mercado</div>
+        <div class="stat-value">{{cripto[0].quote.USD.market_cap | number:'1.0-0'}} US$</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Volumen (24h)</div>
+        <div class="stat-value volume-24h">{{cripto[0].quote.USD.volume_24h | number:'1.0-0'}} US$</div>
+        <div class="stat-change" [ngClass]="{'positive': cripto[0].quote.USD.volume_change_24h > 0, 'negative': cripto[0].quote.USD.volume_change_24h < 0}">
+          {{cripto[0].quote.USD.volume_change_24h | number:'1.2-2'}}%
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Vol/Market Cap (24h)</div>
+        <div class="stat-value">{{cripto[0].quote.USD.volume_24h / cripto[0].quote.USD.market_cap | percent:'1.2-2'}}</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Suministro total</div>
+        <div class="stat-value">{{cripto[0].total_supply | number:'1.0-0'}} {{cripto[0].symbol}}</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Suministro máximo</div>
+        <div class="stat-value">{{cripto[0].max_supply | number:'1.0-0'}} {{cripto[0].symbol}}</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Suministro en circulación</div>
+        <div class="stat-value">{{cripto[0].circulating_supply | number:'1.0-0'}} {{cripto[0].symbol}}</div>
+      </div>
+    </div>
+
+    <div class="sentiment-section">
+      <h3>Community sentiment</h3>
+      <div class="sentiment-bar">
+        <div class="bullish" [style.width.%]="82">82%</div>
+        <div class="bearish" [style.width.%]="18">18%</div>
+      </div>
+      <div class="sentiment-buttons">
+        <button class="bullish-btn">
+          <i class="arrow up"></i> Bullish
+        </button>
+        <button class="bearish-btn">
+          <i class="arrow down"></i> Bearish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

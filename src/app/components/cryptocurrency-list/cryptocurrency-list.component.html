@@ -2,6 +2,10 @@
   <h1 class="table-title">Todas las criptomonedas</h1>
   
   <div class="filters">
+    <div class="filter-search">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar en la tabla..." />
+    </div>
+    
     <div class="filter-group">
       <button class="filter-button active">Criptomonedas</button>
       <button class="filter-button">Exchanges</button>

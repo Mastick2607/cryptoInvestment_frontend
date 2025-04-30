@@ -147,7 +147,7 @@ export class CrytoDetailComponent implements OnInit {
     const from = this.formatDateTime(yesterday)
     const to = this.formatDateTime(today) // Hoy a la hora actual
 
-    this._criptoService.getPriceHistory(this.idcripto, from, '2025-04-30 02:58:17').subscribe(
+    this._criptoService.getPriceHistory(this.idcripto, from, to).subscribe(
       (data) => {
         this.priceHistory = data
 

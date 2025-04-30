@@ -20,6 +20,7 @@ export class CryptocurrencyListComponent implements OnInit, AfterViewInit {
     'circulating_supply', 'volume_24h', 'percent_change_1h', 
     'percent_change_24h', 'percent_change_7d'
   ];
+  
 
   dataSourceCryto = new MatTableDataSource<any>([]);
 
@@ -44,6 +45,26 @@ export class CryptocurrencyListComponent implements OnInit, AfterViewInit {
       this.dataSourceCryto.data = data.data;
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  
+    this.dataSourceCryto.filterPredicate = (data: any, filter: string): boolean => {
+      return (
+        data.name.toLowerCase().includes(filter) ||
+        data.quote.USD.market_cap.toString().includes(filter) ||
+        data.quote.USD.price.toString().includes(filter) || // alerta
+        data.circulating_supply.toString().includes(filter) ||
+        data.quote.USD.volume_24h.toString().includes(filter) ||
+        data.quote.USD.percent_change_1h.toString().includes(filter) ||
+        data.quote.USD.percent_change_24h.toString().includes(filter) ||
+        data.quote.USD.percent_change_7d.toString().includes(filter)
+      );
+    };
+  
+    this.dataSourceCryto.filter = filterValue;
+  }
+
 
   goToDetail(id: string) {
     this.router.navigate(['cryptodetail/', id]);

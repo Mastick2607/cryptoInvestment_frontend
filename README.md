@@ -1,27 +1,32 @@
-# CryptoInvestmentFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+# Frontend - CryptoInvestment
 
-## Development server
+## 📋 Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este es el frontend de la aplicación CryptoInvestment, una plataforma de seguimiento de criptomonedas desarrollada en Angular. Permite visualizar en tiempo real precios, capitalización de mercado, variaciones porcentuales y otros datos clave del mercado cripto.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Instalación
 
-## Build
+1. Clonar el repositorio
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+  git clonehttps://github.com/Mastick2607/cryptoInvestment_frontend.git
+  cd cryptoInvestment_frontend
+  code . //para abrir el proyecto
+```
 
-## Running unit tests
+2. Instalar dependencias
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+```bash
+ npm i
+```
+3. Arrancar el servidor
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para ver el proyecto estará disponible en la ruta: http://localhost:4200/

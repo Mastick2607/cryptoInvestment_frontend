@@ -153,7 +153,7 @@ export class CrytoDetailComponent implements OnInit {
 
         const prices = data.map((item: any) => item.price)
         const dates = data.map((item: any) => new Date(item.fetched_at).toLocaleTimeString())
-
+//
         this.lineChartData.labels = dates
         this.lineChartData.datasets[0].data = prices
 
